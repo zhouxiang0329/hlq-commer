@@ -5,47 +5,43 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="userNumber" property="usernumber" jdbcType="BIGINT" />
     <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="classid" property="classid" jdbcType="BIGINT" />
-    <result column="credit" property="credit" jdbcType="INTEGER" />
-    <result column="identity" property="identity" jdbcType="INTEGER" />
-    <result column="imageUrl" property="imageurl" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="INTEGER" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, userNumber, username, password, classid, credit, identity, imageUrl, sex, createTime
+    id, account,userNumber, username, password, createTime
   </sql>
   <select id="selectByPrimaryKey" resultType="com.commer.app.entity.User" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
-    from user
+    from t_user
     where id = #{id,jdbcType=BIGINT}
   </select>
-  
+
   <select id="checkAdministratorsUser" resultType="com.commer.app.entity.User">
-    select 
+    select
     <include refid="Base_Column_List" />
-    from user
+    from t_user
     where userNumber = #{username,jdbcType=BIGINT} and password = #{password,jdbcType=VARCHAR} and identity=0
   </select>
-  
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from user
+    delete from t_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.commer.app.entity.User" >
-    insert into user (id, userNumber, username, 
-      password, classid, credit, 
-      identity, imageUrl, sex, 
-      createTime)
-    values (#{id,jdbcType=BIGINT}, #{usernumber,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{classid,jdbcType=BIGINT}, #{credit,jdbcType=INTEGER}, 
-      #{identity,jdbcType=INTEGER}, #{imageurl,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
-      #{createtime,jdbcType=TIMESTAMP})
+    insert into t_user (id, userNumber, username,
+    password, classid, credit,
+    identity, imageUrl, sex,
+    createTime)
+    values (#{id,jdbcType=BIGINT}, #{usernumber,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR},
+    #{password,jdbcType=VARCHAR}, #{classid,jdbcType=BIGINT}, #{credit,jdbcType=INTEGER},
+    #{identity,jdbcType=INTEGER}, #{imageurl,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER},
+    #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.commer.app.entity.User" >
-    insert into user
+    insert into t_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
@@ -112,7 +108,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.commer.app.entity.User" >
-    update user
+    update t_user
     <set >
       <if test="usernumber != null" >
         userNumber = #{usernumber,jdbcType=BIGINT},
@@ -145,16 +141,16 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.commer.app.entity.User" >
-    update user
+    update t_user
     set userNumber = #{usernumber,jdbcType=BIGINT},
-      username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      classid = #{classid,jdbcType=BIGINT},
-      credit = #{credit,jdbcType=INTEGER},
-      identity = #{identity,jdbcType=INTEGER},
-      imageUrl = #{imageurl,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      createTime = #{createtime,jdbcType=TIMESTAMP}
+    username = #{username,jdbcType=VARCHAR},
+    password = #{password,jdbcType=VARCHAR},
+    classid = #{classid,jdbcType=BIGINT},
+    credit = #{credit,jdbcType=INTEGER},
+    identity = #{identity,jdbcType=INTEGER},
+    imageUrl = #{imageurl,jdbcType=VARCHAR},
+    sex = #{sex,jdbcType=INTEGER},
+    createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>
