@@ -13,7 +13,7 @@
 	 <dubbo:protocol name="dubbo" port="20880" />
 
 	<!-- 监控中心配置 -->
-<!-- 	<dubbo:monitor protocol="registry"/> -->
+ 	<dubbo:monitor protocol="registry"/>
 
 	 <dubbo:annotation />
 </beans>

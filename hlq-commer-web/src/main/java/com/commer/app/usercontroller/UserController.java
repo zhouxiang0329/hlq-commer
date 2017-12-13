@@ -22,23 +22,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.commer.app.UserService.UserService;
 import com.commer.app.entity.User;
 
-@RestController 
+@Controller
 @RequestMapping("/user") 
 public class UserController extends BaseController{
 	private static Logger logger = Logger.getLogger(UserController.class);  
 	   
 	@Resource  
     private UserService userService;
-	
-	/*@Reference
-    private UserService userService;*/
-   
-    /*  
-     *  http://localhost:8080/user/getUserById?id=1  
-     */  
-   
-	
-//    @GetMapping(value = "getUserById") 
+
 	@RequestMapping("/getUserById")
     public Object getUserById() {  
         User user = userService.selectByPrimaryKey(1);  
@@ -50,22 +41,24 @@ public class UserController extends BaseController{
     }  
 	
 	@GetMapping("/login")
-    public ModelAndView login() {
-		return new ModelAndView("login");
+    public String login() {
+		return "/themes/default/login";
     }
 	
 	@RequestMapping("/submitBackstageLogin")
-    public Object submitlogin(HttpServletRequest request,HttpSession session,HttpServletResponse response) throws IOException{  
+    public String submitlogin(HttpServletRequest request,HttpSession session,HttpServletResponse response,Model model) throws IOException{
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		User user = userService.checkAdministratorsUser(username, password);
 		
 		//判断不存在该用户的情况下
 		if (user == null) {
-			return false;
+			return "/themes/default/login";
 		}
 		session.setAttribute("user", user);
-        return true;  
+         model.addAttribute("site_keywords",user.getPassword());
+        model.addAttribute("user",user);
+        return "/themes/default/index";
     }
 	
 	@RequestMapping("/customer_index")
@@ -78,4 +71,5 @@ public class UserController extends BaseController{
         // 跳转登录页面
 		return new ModelAndView("login");
     }
+
 }

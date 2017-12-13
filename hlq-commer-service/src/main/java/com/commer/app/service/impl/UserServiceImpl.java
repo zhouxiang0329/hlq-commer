@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User checkAdministratorsUser(String username, String password) {
-		return userMapper.checkAdministratorsUser(username, password);
+	public User checkAdministratorsUser(String account, String password) {
+		return userMapper.checkAdministratorsUser(account, password);
 	}
 }
