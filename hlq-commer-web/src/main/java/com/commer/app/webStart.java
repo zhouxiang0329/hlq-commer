@@ -4,7 +4,9 @@ package com.commer.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 import com.commer.app.UserService.UserService;
@@ -13,6 +15,8 @@ import com.commer.app.UserService.UserService;
  * 博客內容展示站點
  */
 @SpringBootApplication
+@ServletComponentScan( basePackages = "com.commer.app.*")
+@ComponentScan(basePackages = "com.commer.app.*")
 @ImportResource(locations={"classpath:dubbo-consumer.xml"})
 public class webStart 
 {	
@@ -20,8 +24,6 @@ public class webStart
     public static void main( String[] args )
     {
         ApplicationContext tc = SpringApplication.run(webStart.class, args);
-        UserService userService = tc.getBean(UserService.class);
-        System.out.println(userService.selectByPrimaryKey(1).getUsername());
     }
     
     /*@Configuration

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hlq-commer.iml" filepath="$PROJECT_DIR$/hlq-commer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hlq-commer-app/hlq-commer-app.iml" filepath="$PROJECT_DIR$/hlq-commer-app/hlq-commer-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hlq-commer-common/hlq-commer-common.iml" filepath="$PROJECT_DIR$/hlq-commer-common/hlq-commer-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hlq-commer-service/hlq-commer-service.iml" filepath="$PROJECT_DIR$/hlq-commer-service/hlq-commer-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hlq-commer-shopWeb/hlq-commer-shopWeb.iml" filepath="$PROJECT_DIR$/hlq-commer-shopWeb/hlq-commer-shopWeb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hlq-commer-web/hlq-commer-web.iml" filepath="$PROJECT_DIR$/hlq-commer-web/hlq-commer-web.iml" />
+    </modules>
+  </component>
+</project>

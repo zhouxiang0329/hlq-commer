@@ -42,7 +42,7 @@ public class UserController extends BaseController{
 	
 	@GetMapping("/login")
     public String login() {
-		return "/themes/default/login";
+		return "/default/login";
     }
 	
 	@RequestMapping("/submitBackstageLogin")
@@ -53,12 +53,12 @@ public class UserController extends BaseController{
 		
 		//判断不存在该用户的情况下
 		if (user == null) {
-			return "/themes/default/login";
+			return "/default/login";
 		}
 		session.setAttribute("user", user);
          model.addAttribute("site_keywords",user.getPassword());
         model.addAttribute("user",user);
-        return "/themes/default/index";
+        return "/default/dashboard";
     }
 	
 	@RequestMapping("/customer_index")
