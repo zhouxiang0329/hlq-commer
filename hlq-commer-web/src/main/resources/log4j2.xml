@@ -26,11 +26,14 @@
         <file name="service_log" fileName="${LOG_HOME}/my-blog-info.log" append="true">
             <patternLayout pattern="${FORMAT}"/>
         </file>
+        <file name="commer-app" fileName="${LOG_HOME}/commer-app.log" append="false">
+            <patternLayout pattern="${FORMAT}"/>
+        </file>
     </appenders>
 
     <!-- 接收appender -->
     <loggers>
-        <logger name="org.apache.http" level="warn"/>
+        <logger name="org.apache.http" level="WARN"/>
         <!-- Spring -->
         <logger name="org.springframework" level="WARN"/>
         <!-- mybatis loggers -->
@@ -38,12 +41,24 @@
         <logger name="com.ibatis.common.jdbc.SimpleDataSource" level="DEBUG"/>
         <logger name="com.ibatis.common.jdbc.ScriptRunner" level="DEBUG"/>
         <logger name="com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate" level="DEBUG"/>
+
+        <!-- General Apache libraries -->
+        <logger name="org.apache" level="WARN"/>
+
+        <logger name="org.mybatis" level="DEBUG"/>
+        <logger name="org.apache.ibatis" level="DEBUG"/>
+
         <!-- sql loggers -->
         <logger name="java.sql.Connection" level="DEBUG" additivity="true"/>
         <logger name="java.sql.Statement" level="DEBUG" additivity="true"/>
         <logger name="java.sql.PreparedStatement" level="=debug,stdout" additivity="true"/>
         <logger name="java.sql.ResultSet" level="DEBUG" additivity="true"/>
-        <logger name="org.apache" level="WARN"/>
+
+        <!-- Default Shiro loggin -->
+        <logger name="org.apache.shiro" level="WARN"/>
+        <!-- Disable verbose logging -->
+        <logger name="org.apache.shiro.util.ThreadContext" level="WARN" />
+        <logger name="org.apache.shiro.cache.ehcache.EhCache" level="WARN" />
 
         <!-- 对包进行更详细的配置 -->
         <!-- additivity表示是否追加,防止重复,因为root已经接收过一次了 -->
@@ -56,9 +71,12 @@
         <logger name="com.my.blog.website.service" level="DEBUG" additivity="false">
             <appender-ref ref="service_log"/>
         </logger>
+        <logger name="com.commer.app" level="DEBUG" additivity="false">
+            <appender-ref ref="commer-app"/>
+        </logger>
         <!-- root logger,一般用于放置所有的appender -->
         <root level="DEBUG">
-            <appender-ref ref="db_log"/>
+            <appender-ref ref="commer-app"/>
             <appender-ref ref="console"/>
         </root>
     </loggers>
