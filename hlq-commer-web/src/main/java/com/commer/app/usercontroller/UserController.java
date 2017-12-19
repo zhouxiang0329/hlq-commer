@@ -44,7 +44,10 @@ public class UserController extends BaseController{
     public String login() {
 		return "/default/login";
     }
-	
+    @GetMapping("/index_14")
+    public String index_14() {
+        return "/default/index_v148b2";
+    }
 	@RequestMapping("/submitBackstageLogin")
     public String submitlogin(HttpServletRequest request,HttpSession session,HttpServletResponse response,Model model) throws IOException{
 		String username = request.getParameter("username");
@@ -58,7 +61,7 @@ public class UserController extends BaseController{
 		session.setAttribute("user", user);
          model.addAttribute("site_keywords",user.getPassword());
         model.addAttribute("user",user);
-        return "/default/dashboard";
+        return "/default/index";
     }
 	
 	@RequestMapping("/customer_index")

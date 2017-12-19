@@ -32,7 +32,11 @@
 			<artifactId>hlq-commer-app</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+		<!-- log4j 2 日志依赖配置 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
 		<!-- web模块 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
