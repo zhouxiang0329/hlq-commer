@@ -1,6 +1,8 @@
-package com.commer.app.usercontroller;
+package com.commer.usercontroller;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Created by 13 on 2017/2/21.
@@ -8,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 public abstract class BaseController {
 
     public static String THEME = "themes/default";
-
+    protected Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
     /**
      * 主页的页面主题
      * @param viewName

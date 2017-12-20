@@ -33,25 +33,114 @@
         </div>
         <h3>欢迎使用 H+</h3>
 
-        <form class="m-t" role="form" action="/user/submitBackstageLogin">
+        <form class="m-t" role="form" action="" method="post">
             <div class="form-group">
-                <input type="email" name="username" class="form-control" placeholder="用户名" required=""/>
+                <input type="email" name="username" id="username" class="form-control" placeholder="用户名" required=""/>
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="密码" required=""/>
+                <input type="password" name="password" id="password" class="form-control" placeholder="密码" required=""/>
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            <button type="button" id="login" class="btn btn-primary block full-width m-b">登 录</button>
 
 
             <p class="text-muted text-center"> <a href="login.html#"><small>忘记密码了？</small></a> | <a href="register.html">注册一个新账号</a>
             </p>
-
+            <div class="error"><span>+</span></div>
         </form>
     </div>
 </div>
 <script src="/static/js/jquery.min63b9.js?v=2.1.4"></script>
 <script src="/static/js/bootstrap.min14ed.js?v=3.3.6"></script>
+<script src="/static/js/MD5.js"></script>
+<script  src="/static/js/plugins/lay/lib/layer/1.8.5/layer.js"></script>
+<script >
 
+    jQuery(document).ready(function() {
+        try{
+           // <![CDATA[
+            var _href = window.location.href+"";
+            if(_href && _href.indexOf('?kickout')!=-1){
+                layer.msg('您已经被踢出，请重新登录！');
+            }
+            //]]>
+        }catch(e){
+
+        }
+        //回车事件绑定
+       // <![CDATA[
+        document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==13){
+                $('#login').click();
+            }
+        };
+        //]]>
+        //登录操作
+       // <![CDATA[
+        $('#login').click(function(){
+
+            var username = $('#username').val();
+            var password = $('#password').val();
+            if(username == '') {
+                $('.error').fadeOut('fast', function(){
+                    $('.error').css('top', '27px').show();
+                });
+                $('.error').fadeIn('fast', function(){
+                    $('#username').focus();
+                });
+                return false;
+            }
+            if(password == '') {
+                $('.error').fadeOut('fast', function(){
+                    $('.error').css('top', '96px').show();
+                });
+                $(this).find('.error').fadeIn('fast', function(){
+                    $('.password').focus();
+                });
+                return false;
+            }
+            var pswd = MD5(username +"#" + password),
+                data = {password:password,username:username};
+            var load = layer.load();
+            $.ajax({
+                url:"/user/submitLogin",
+                data:data,
+                type:"post",
+                dataType:"json",
+                beforeSend:function(){
+                    layer.msg('开始登录，请注意后台控制台。');
+                },
+                success:function(result){
+                    layer.close(load);
+                    if(result && result.status != 200){
+                        layer.msg(result.message,function(){});
+                        $('#password').val('');
+                        return;
+                    }else{
+                        layer.msg('登录成功！');
+                        setTimeout(function(){
+                            //登录返回
+                            window.location.href= result.back_url || "${basePath}/";
+                        },1000)
+                    }
+                },
+                error:function(e){
+                    console.log(e,e.message);
+                    layer.msg('请看后台Java控制台，是否报错，确定已经配置数据库和Redis',new Function());
+                }
+            });
+        });
+       // ]]>
+        $('.page-container form .username, .page-container form .password').keyup(function(){
+            $(this).parent().find('.error').fadeOut('fast');
+        });
+        //注册
+        $("#register").click(function(){
+            window.location.href="register.shtml";
+        });
+    });
+
+</script>
 </body>
 
 </html>

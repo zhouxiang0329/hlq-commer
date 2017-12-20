@@ -1,4 +1,4 @@
-package com.commer.app.entity;
+package com.commer.entity;
 
 import com.alibaba.dubbo.common.utils.StringUtils;
 import com.fasterxml.jackson.annotation.JsonInclude;

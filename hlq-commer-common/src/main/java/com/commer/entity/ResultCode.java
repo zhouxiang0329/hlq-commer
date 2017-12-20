@@ -1,4 +1,4 @@
-package com.commer.app.entity;
+package com.commer.entity;
 
 /**
  * @author:杨果

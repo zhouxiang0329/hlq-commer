@@ -1,6 +1,7 @@
 package com.commer.app.UserService;
 
-import com.commer.app.entity.User;
+import com.commer.VO.UUser;
+import com.commer.entity.User;
 
 public interface UserService {
 	

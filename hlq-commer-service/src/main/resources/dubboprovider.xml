@@ -16,4 +16,5 @@
  	<dubbo:monitor protocol="registry"/>
 
 	 <dubbo:annotation />
+
 </beans>

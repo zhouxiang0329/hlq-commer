@@ -1,4 +1,4 @@
-package com.commer.app.shopUsercontroller;
+package com.commer.shopUsercontroller;
 
 import javax.servlet.http.HttpServletRequest;
 
