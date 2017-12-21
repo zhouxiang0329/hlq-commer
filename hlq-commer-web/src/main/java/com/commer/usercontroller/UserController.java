@@ -43,7 +43,26 @@ public class UserController extends BaseController{
     public String index_14() {
         return "/default/index_v148b2";
     }
-
+    @GetMapping("/index_v2")
+    public String index_v2() {
+        return "/default/index_v2";
+    }
+    @GetMapping("/index_v3")
+    public String index_v3() {
+        return "/default/index_v3";
+    }
+    @GetMapping("/index_v4")
+    public String index_v4() {
+        return "/default/index_v4";
+    }
+    @GetMapping("/index_v5")
+    public String index_v5() {
+        return "/default/index_v5";
+    }
+    @GetMapping("/layouts")
+    public String layouts() {
+        return "/default/layouts";
+    }
     @GetMapping("/index")
     public String index() {
         return "/default/index";
